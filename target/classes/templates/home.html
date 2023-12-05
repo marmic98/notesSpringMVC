@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+    <link href="/style.css" rel="stylesheet"></link>
+</head>
+<body>
+    <a href="newnote">Aggiungi nota!</a>
+    <h1>Ecco le note!</h1>
+    <div th:each="nota : ${note}">
+        <p th:text="'titolo: ' + ${nota.getTitolo()}"></p>
+        <p th:text="'contenuto: ' + ${nota.getContenuto()}"></p>
+    </div>
+</body>
+</html>
