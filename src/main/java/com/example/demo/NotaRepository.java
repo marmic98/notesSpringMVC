@@ -1,8 +1,10 @@
 package com.example.demo;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+public interface NotaRepository extends JpaRepository<Nota, Long> {
 
-public interface NotaRepository extends CrudRepository<Nota, Long> {
+    List<Nota>  findByOrderByIdDesc();
 
 }
