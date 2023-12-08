@@ -4,13 +4,46 @@
     <meta charset="UTF-8">
     <title>Notes</title>
     <link href="/style.css" rel="stylesheet"></link>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
     <a href="newnote">Aggiungi nota!</a>
     <h1>Ecco le note!</h1>
-    <div th:each="nota : ${note}">
-        <p th:text="'titolo: ' + ${nota.getTitolo()}"></p>
-        <p th:text="'contenuto: ' + ${nota.getContenuto()}"></p>
+    <div th:each="notina : ${note}">
+        <p th:text="'titolo: ' + ${notina.getTitolo()}"></p>
+        <p th:text="'contenuto: ' + ${notina.getContenuto()}"></p>
     </div>
+
+    <form>
+        <label for="titolo">titolo</label>
+        <input type="text" id="titolo">
+        <label for="contenuto">contenuto</label>
+        <input type="text" id="contenuto">
+        <button type="button" onclick="submitForm()">submit note!</button>
+    </form>
+    
+    <script th:inline="javascript">
+        function submitForm() {
+            var noteData = {
+                titolo: document.getElementById('titolo').value,
+                contenuto: document.getElementById('contenuto').value
+            };
+    
+            $.ajax({
+                type: 'POST',
+                url: '/api/create-note', // Update the URL to match your REST endpoint
+                contentType: 'application/json',
+                data: JSON.stringify(noteData),
+                success: function (response) {
+                    // Handle success response
+                    console.log(response);
+                },
+                error: function (error) {
+                    // Handle error response
+                    console.error(error);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
