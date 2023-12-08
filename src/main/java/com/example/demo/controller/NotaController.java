@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Nota;
 import com.example.demo.service.NotaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +15,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class NotaController {
-    private final NotaService notaService;
-
+    
     @Autowired
-    public NotaController(NotaService ns){
-        notaService = ns;
-    }
+    private NotaService notaService;
 
     @GetMapping("/newnote")
     public String addnoteForm(Model model) {
